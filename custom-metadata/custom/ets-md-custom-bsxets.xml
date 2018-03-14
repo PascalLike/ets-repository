@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<etf:ExecutableTestSuite xmlns="http://www.interactive-instruments.de/etf/2.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:etf="http://www.interactive-instruments.de/etf/2.0"
+    xmlns:ii="http://www.interactive-instruments.de" id="EID9f7d39c2-260b-11e8-d232-09173f13e4c5"
+    xsi:schemaLocation="http://www.interactive-instruments.de/etf/2.0 http://resources.etf-validator.net/schema/v2/service/service.xsd">
+    <itemHash>bQ==</itemHash>
+    <remoteResource>https://github.com/interactive-instruments/etf-ets-repository</remoteResource>
+    <localPath>/auto</localPath>
+    <label>Nationell metadataprofil 3.1 för metadata inom Geodatasamverkan</label>
+    <description>Nationell metadataprofil 3.1 för metadata inom Geodatasamverkan</description>
+	<reference>../../inspire-md-bsxets.xq</reference>
+    <version>1.0.0</version>
+    <author>Jose Garcia - Geocat</author>
+    <creationDate>2018-03-12T16:39:59.708+01:00</creationDate>
+    <lastEditor>Antonio Cerciello - Geocat</lastEditor>
+    <lastUpdateDate>2018-03-12T16:39:59.708+01:00</lastUpdateDate>
+    <testDriver ref="EID4dddc9e2-1b21-40b7-af70-6a2d156ad130"/>
+    <translationTemplateBundle ref="EID27117afb-11aa-4e45-aa3d-0e1e65bdccb8"/>
+	<ParameterList name="ETF Standard Parameters for metadata XML test objects">
+		<parameter name="files_to_test" required="true">
+			<defaultValue>.*</defaultValue>
+			<description ref="TR.filesToTest"/>
+			<allowedValues>.*</allowedValues>
+			<type>string</type>
+		</parameter>
+		<parameter name="tests_to_execute" required="false">
+			<defaultValue>.*</defaultValue>
+			<description ref="TR.testsToExecute"/>
+			<allowedValues>.*</allowedValues>
+			<type>string</type>
+		</parameter>
+	</ParameterList>
+    <supportedTestObjectTypes>
+        <testObjectType ref="EID5a60dded-0cb0-4977-9b06-16c6c2321d2e"/>
+    </supportedTestObjectTypes>
+    <testModules>
+        <TestModule id="EID9f7d3aa1-260b-11e8-d2e2-09173f13e4c5">
+            <label>[Geodata.se:106h] OM resursen ingår i Geodatasamverkan är nyckelord obligatoriskt
+                med värdet Geodatasamverkan ur nyckelordslexikonet Initiativ</label>
+            <description>...</description>
+            <parent ref="EID9f7d39c2-260b-11e8-d232-09173f13e4c5"/>
+            <testCases>
+                <TestCase id="EID9f7d3aa6-260b-11e8-d2e3-09173f13e4c5">
+                    <label>Test Case 1</label>
+                    <description>...</description>
+                    <parent ref="EID9f7d3aa1-260b-11e8-d2e2-09173f13e4c5"/>
+                    <testSteps>
+                        <TestStep id="EID9f7d39c6-260b-11e8-d682-09173f13e4c5">
+                            <label>IGNORE</label>
+                            <description>IGNORE</description>
+                            <parent ref="EID9f7d3aa6-260b-11e8-d2e3-09173f13e4c5"/>
+                            <statementForExecution>not applicable</statementForExecution>
+                            <testItemType ref="EIDf483e8e8-06b9-4900-ab36-adad0d7f22f0"/>
+                            <testAssertions>
+                                <TestAssertion id="EID9f7d3aae-260b-11e8-d2e3-09173f13e4c5">
+                                    <label>Assertion 1</label>
+                                    <description>[Geodata.se:106h] OM resursen ingår i
+                                        Geodatasamverkan är nyckelord obligatoriskt med värdet
+                                        Geodatasamverkan ur nyckelordslexikonet
+                                        Initiativ</description>
+                                    <parent ref="EID9f7d39c6-260b-11e8-d682-09173f13e4c5"/>
+                                    <expectedResult>NOT_APPLICABLE</expectedResult>
+                                    <expression> let $errors := for $file in $db return for
+                                        $nodeInFile in $file//gmd:MD_DataIdentification|
+                                        //*[@gco:isoType='gmd:MD_DataIdentification']|
+                                        //srv:SV_ServiceIdentification|
+                                        //*[@gco:isoType='srv:SV_ServiceIdentification'] let
+                                        $keywordValue_SDT := xquery:eval("declare namespace
+                                        gml='http://www.opengis.net/gml'; declare namespace
+                                        gmd='http://www.isotc211.org/2005/gmd'; declare namespace
+                                        srv='http://www.isotc211.org/2005/srv'; declare namespace
+                                        gco='http://www.isotc211.org/2005/gco'; declare namespace
+                                        geonet='http://www.fao.org/geonetwork'; declare namespace
+                                        skos='http://www.w3.org/2004/02/skos/core#'; declare
+                                        namespace xlink='http://www.w3.org/1999/xlink';
+                                        //gmd:descriptiveKeywords/*/gmd:keyword/*/text()='Geodatasamverkan'",
+                                        map { '': $nodeInFile}) let $thesaurus_name_SDT :=
+                                        xquery:eval("declare namespace
+                                        gml='http://www.opengis.net/gml'; declare namespace
+                                        gmd='http://www.isotc211.org/2005/gmd'; declare namespace
+                                        srv='http://www.isotc211.org/2005/srv'; declare namespace
+                                        gco='http://www.isotc211.org/2005/gco'; declare namespace
+                                        geonet='http://www.fao.org/geonetwork'; declare namespace
+                                        skos='http://www.w3.org/2004/02/skos/core#'; declare
+                                        namespace xlink='http://www.w3.org/1999/xlink';
+                                        //gmd:descriptiveKeywords/*/gmd:thesaurusName/*/gmd:title/*/text()='Initiativ'",
+                                        map { '': $nodeInFile}) where not(xquery:eval("declare
+                                        namespace gml='http://www.opengis.net/gml'; declare
+                                        namespace gmd='http://www.isotc211.org/2005/gmd'; declare
+                                        namespace srv='http://www.isotc211.org/2005/srv'; declare
+                                        namespace gco='http://www.isotc211.org/2005/gco'; declare
+                                        namespace geonet='http://www.fao.org/geonetwork'; declare
+                                        namespace skos='http://www.w3.org/2004/02/skos/core#';
+                                        declare namespace xlink='http://www.w3.org/1999/xlink';
+                                        declare variable $keywordValue_SDT external; declare
+                                        variable $thesaurus_name_SDT external; $thesaurus_name_SDT
+                                        and $keywordValue_SDT", map { '': $nodeInFile,
+                                        'keywordValue_SDT': $keywordValue_SDT, 'thesaurus_name_SDT':
+                                        $thesaurus_name_SDT})) order by local:filename($nodeInFile)
+                                        return
+                                        local:addMessage('TR.schtron.Nationell.Geodatasamverkan.err',
+                                        map { 'filename': local:filename($nodeInFile) }) return (if
+                                        ($errors) then 'FAILED' else 'PASSED',
+                                        local:error-statistics('TR.errors', count($errors)),
+                                        $errors) </expression>
+                                    <testItemType ref="EIDf0edc596-49d2-48d6-a1a1-1ac581dcde0a"/>
+                                    <etf:translationTemplates>
+                                        <etf:translationTemplate
+                                            ref="TR.schtron.Nationell.Geodatasamverkan.err"
+                                        />
+                                    </etf:translationTemplates>
+                                </TestAssertion>
+                            </testAssertions>
+                        </TestStep>
+                    </testSteps>
+                </TestCase>
+            </testCases>
+        </TestModule>
+    </testModules>
+</etf:ExecutableTestSuite>
