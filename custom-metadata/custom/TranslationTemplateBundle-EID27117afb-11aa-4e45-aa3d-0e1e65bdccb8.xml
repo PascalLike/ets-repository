@@ -341,6 +341,11 @@
 		  <TranslationTemplate language="en" name="TR.unknownResourceType2">XML document '{filename}', {featureType} '{gmlid}', property '{property}': The property references a resource at '{url}', but the resource is not an XML element '{elementNameExpected}' in namespace '{namespaceExpected}'. Found: a document with media type '{mediaType}'.</TranslationTemplate>
 		 </translationTemplates>
 	  </LangTranslationTemplateCollection>
+	  <LangTranslationTemplateCollection name="TR.geodata.se.1.err">
+		 <translationTemplates>
+		  <TranslationTemplate language="en" name="TR.geodata.se.1.err">[Geodata.se:106h] OM resursen ingår i Geodatasamverkan är nyckelord obligatoriskt med värdet Geodatasamverkan ur nyckelordslexikonet Initiativ</TranslationTemplate>
+		 </translationTemplates>
+	  </LangTranslationTemplateCollection>
 
 	</translationTemplateCollections>
 </TranslationTemplateBundle>

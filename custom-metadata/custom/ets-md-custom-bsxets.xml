@@ -3,6 +3,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:etf="http://www.interactive-instruments.de/etf/2.0"
     xmlns:ii="http://www.interactive-instruments.de" id="EID9f7d39c2-260b-11e8-d232-09173f13e4c5"
+    xmlns:gmd="http://www.isotc211.org/2005/gmd"
+    xmlns:srv="http://www.isotc211.org/2005/srv"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:gml="http://www.opengis.net/gml"
+    xmlns:gco="http://www.isotc211.org/2005/gco"
+    xmlns:geonet="http://www.fao.org/geonetwork"
+    xmlns:gts="http://www.isotc211.org/2005/gts"
     xsi:schemaLocation="http://www.interactive-instruments.de/etf/2.0 http://resources.etf-validator.net/schema/v2/service/service.xsd">
     <itemHash>bQ==</itemHash>
     <remoteResource>https://github.com/interactive-instruments/etf-ets-repository</remoteResource>
@@ -38,12 +45,12 @@
         <TestModule id="EID9f7d3aa1-260b-11e8-d2e2-09173f13e4c5">
             <label>[Geodata.se:106h] OM resursen ingår i Geodatasamverkan är nyckelord obligatoriskt
                 med värdet Geodatasamverkan ur nyckelordslexikonet Initiativ</label>
-            <description>...</description>
+            <description>Swedish rules</description>
             <parent ref="EID9f7d39c2-260b-11e8-d232-09173f13e4c5"/>
             <testCases>
                 <TestCase id="EID9f7d3aa6-260b-11e8-d2e3-09173f13e4c5">
                     <label>Test Case 1</label>
-                    <description>...</description>
+                    <description>Check for a Thesaurus named Initiativ IN case this thesaurus have keyword "Inspire" we shall do some additional checkups</description>
                     <parent ref="EID9f7d3aa1-260b-11e8-d2e2-09173f13e4c5"/>
                     <testSteps>
                         <TestStep id="EID9f7d39c6-260b-11e8-d682-09173f13e4c5">
@@ -61,54 +68,52 @@
                                         Initiativ</description>
                                     <parent ref="EID9f7d39c6-260b-11e8-d682-09173f13e4c5"/>
                                     <expectedResult>NOT_APPLICABLE</expectedResult>
-                                    <expression> let $errors := for $file in $db return for
-                                        $nodeInFile in $file//gmd:MD_DataIdentification|
-                                        //*[@gco:isoType='gmd:MD_DataIdentification']|
-                                        //srv:SV_ServiceIdentification|
-                                        //*[@gco:isoType='srv:SV_ServiceIdentification'] let
-                                        $keywordValue_SDT := xquery:eval("declare namespace
-                                        gml='http://www.opengis.net/gml'; declare namespace
-                                        gmd='http://www.isotc211.org/2005/gmd'; declare namespace
-                                        srv='http://www.isotc211.org/2005/srv'; declare namespace
-                                        gco='http://www.isotc211.org/2005/gco'; declare namespace
-                                        geonet='http://www.fao.org/geonetwork'; declare namespace
-                                        skos='http://www.w3.org/2004/02/skos/core#'; declare
-                                        namespace xlink='http://www.w3.org/1999/xlink';
-                                        //gmd:descriptiveKeywords/*/gmd:keyword/*/text()='Geodatasamverkan'",
-                                        map { '': $nodeInFile}) let $thesaurus_name_SDT :=
-                                        xquery:eval("declare namespace
-                                        gml='http://www.opengis.net/gml'; declare namespace
-                                        gmd='http://www.isotc211.org/2005/gmd'; declare namespace
-                                        srv='http://www.isotc211.org/2005/srv'; declare namespace
-                                        gco='http://www.isotc211.org/2005/gco'; declare namespace
-                                        geonet='http://www.fao.org/geonetwork'; declare namespace
-                                        skos='http://www.w3.org/2004/02/skos/core#'; declare
-                                        namespace xlink='http://www.w3.org/1999/xlink';
-                                        //gmd:descriptiveKeywords/*/gmd:thesaurusName/*/gmd:title/*/text()='Initiativ'",
-                                        map { '': $nodeInFile}) where not(xquery:eval("declare
-                                        namespace gml='http://www.opengis.net/gml'; declare
-                                        namespace gmd='http://www.isotc211.org/2005/gmd'; declare
-                                        namespace srv='http://www.isotc211.org/2005/srv'; declare
-                                        namespace gco='http://www.isotc211.org/2005/gco'; declare
-                                        namespace geonet='http://www.fao.org/geonetwork'; declare
-                                        namespace skos='http://www.w3.org/2004/02/skos/core#';
-                                        declare namespace xlink='http://www.w3.org/1999/xlink';
-                                        declare variable $keywordValue_SDT external; declare
-                                        variable $thesaurus_name_SDT external; $thesaurus_name_SDT
-                                        and $keywordValue_SDT", map { '': $nodeInFile,
-                                        'keywordValue_SDT': $keywordValue_SDT, 'thesaurus_name_SDT':
-                                        $thesaurus_name_SDT})) order by local:filename($nodeInFile)
-                                        return
-                                        local:addMessage('TR.schtron.Nationell.Geodatasamverkan.err',
-                                        map { 'filename': local:filename($nodeInFile) }) return (if
-                                        ($errors) then 'FAILED' else 'PASSED',
-                                        local:error-statistics('TR.errors', count($errors)),
-                                        $errors) </expression>
+                                    <expression> 
+
+let $errors := for $file in $db
+    return for $nodeInFile in $file
+
+        let $keywordValue_SDT := xquery:eval("declare namespace gml='http://www.opengis.net/gml';
+                                              declare namespace gmd='http://www.isotc211.org/2005/gmd';
+                                              declare namespace srv='http://www.isotc211.org/2005/srv';
+                                              declare namespace gco='http://www.isotc211.org/2005/gco';
+                                              declare namespace geonet='http://www.fao.org/geonetwork';
+                                              declare namespace skos='http://www.w3.org/2004/02/skos/core#';
+                                              declare namespace xlink='http://www.w3.org/1999/xlink';
+                                              //gmd:MD_DataIdentification|//*[@gco:isoType='gmd:MD_DataIdentification']|//srv:SV_ServiceIdentification|//*[@gco:isoType='srv:SV_ServiceIdentification']//gmd:descriptiveKeywords/*/gmd:keyword/*/text()='Geodatasamverkan'",
+                                            map { '': $nodeInFile})
+
+        let $thesaurus_name_SDT := xquery:eval("declare namespace gml='http://www.opengis.net/gml';
+                                                declare namespace gmd='http://www.isotc211.org/2005/gmd';
+                                                declare namespace srv='http://www.isotc211.org/2005/srv';
+                                                declare namespace gco='http://www.isotc211.org/2005/gco';
+                                                declare namespace geonet='http://www.fao.org/geonetwork';
+                                                declare namespace skos='http://www.w3.org/2004/02/skos/core#';
+                                                declare namespace xlink='http://www.w3.org/1999/xlink';
+                                                //gmd:MD_DataIdentification|//*[@gco:isoType='gmd:MD_DataIdentification']|//srv:SV_ServiceIdentification|//*[@gco:isoType='srv:SV_ServiceIdentification']//gmd:descriptiveKeywords/*/gmd:thesaurusName/*/gmd:title/*/text()='Initiativ'",
+                                            map { '': $nodeInFile})
+
+    where not(xquery:eval("declare namespace gml='http://www.opengis.net/gml'; 
+                           declare namespace gmd='http://www.isotc211.org/2005/gmd'; 
+                           declare namespace srv='http://www.isotc211.org/2005/srv'; 
+                           declare namespace gco='http://www.isotc211.org/2005/gco'; 
+                           declare namespace geonet='http://www.fao.org/geonetwork'; 
+                           declare namespace skos='http://www.w3.org/2004/02/skos/core#';
+                           declare namespace xlink='http://www.w3.org/1999/xlink';
+                           declare variable $keywordValue_SDT external; 
+                           declare variable $thesaurus_name_SDT external; 
+                           $thesaurus_name_SDT and $keywordValue_SDT", 
+                          map { '': $nodeInFile, 'keywordValue_SDT': $keywordValue_SDT, 'thesaurus_name_SDT': $thesaurus_name_SDT})) 
+    order by local:filename($nodeInFile)
+    return local:addMessage('TR.geodata.se.1.err', map { 'filename': local:filename($nodeInFile) }) 
+
+return
+(if ($errors) then 'FAILED' else 'PASSED', local:error-statistics('TR.geodata.se.1.err', count($errors)))
+
+                                    </expression>
                                     <testItemType ref="EIDf0edc596-49d2-48d6-a1a1-1ac581dcde0a"/>
                                     <etf:translationTemplates>
-                                        <etf:translationTemplate
-                                            ref="TR.schtron.Nationell.Geodatasamverkan.err"
-                                        />
+                                        <etf:translationTemplate ref="TR.geodata.se.1.err" />
                                     </etf:translationTemplates>
                                 </TestAssertion>
                             </testAssertions>
