@@ -80,7 +80,7 @@ let $errors := for $file in $db
                                               declare namespace geonet='http://www.fao.org/geonetwork';
                                               declare namespace skos='http://www.w3.org/2004/02/skos/core#';
                                               declare namespace xlink='http://www.w3.org/1999/xlink';
-                                              //gmd:MD_DataIdentification|//*[@gco:isoType='gmd:MD_DataIdentification']|//srv:SV_ServiceIdentification|//*[@gco:isoType='srv:SV_ServiceIdentification']//gmd:descriptiveKeywords/*/gmd:keyword/*/text()='Geodatasamverkan'",
+                                              //gmd:MD_DataIdentification//gmd:descriptiveKeywords/*/gmd:keyword/*/text()='Geodatasamverkan'",
                                             map { '': $nodeInFile})
 
         let $thesaurus_name_SDT := xquery:eval("declare namespace gml='http://www.opengis.net/gml';
@@ -90,7 +90,7 @@ let $errors := for $file in $db
                                                 declare namespace geonet='http://www.fao.org/geonetwork';
                                                 declare namespace skos='http://www.w3.org/2004/02/skos/core#';
                                                 declare namespace xlink='http://www.w3.org/1999/xlink';
-                                                //gmd:MD_DataIdentification|//*[@gco:isoType='gmd:MD_DataIdentification']|//srv:SV_ServiceIdentification|//*[@gco:isoType='srv:SV_ServiceIdentification']//gmd:descriptiveKeywords/*/gmd:thesaurusName/*/gmd:title/*/text()='Initiativ'",
+                                                //gmd:MD_DataIdentification//gmd:descriptiveKeywords/*/gmd:thesaurusName/*/gmd:title/*/text()='Initiativ'",
                                             map { '': $nodeInFile})
 
     where not(xquery:eval("declare namespace gml='http://www.opengis.net/gml'; 
